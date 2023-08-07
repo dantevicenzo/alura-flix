@@ -1,3 +1,29 @@
+:root {
+  --color-primary: #2A7AE4;
+
+  --color-frontend: #6BD1FF;
+  --color-backend: #69953B;
+  --color-mobile: #FFBA05;
+  --color-ux: #DC6EBE;
+  --color-infra: #9CD33B;
+  --color-marketing: #6B5BE2;
+  --color-inovation: #FF8C2A;
+  --color-data-science: #9CD33B;
+
+  --color-black-dark: #000000E5;
+  --color-black-medium: #00000099;
+  --color-black-light: #00000080;
+  --color-black-lighter: #9E9E9E;
+
+  --color-gray-dark: #C2C2C2;
+  --color-gray-medium: #E5E5E5;
+  --color-gray-light: #F5F5F5;
+
+  --color-error-dark: #C62828;
+  --color-error-medium: #E53935;
+  --color-error-light: #FCE7E7;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
