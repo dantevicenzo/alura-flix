@@ -1,12 +1,16 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Roboto } from 'next/font/google'
+import { Source_Sans_3 as SourceSans3 } from 'next/font/google'
 
-const roboto = Roboto({ subsets: ['latin'], weight: ['400', '300'] })
+const sourceSans3 = SourceSans3({
+  subsets: ['latin'],
+  weight: ['600', '500', '400', '300'],
+})
 
 export const metadata: Metadata = {
   title: 'AluraFlix',
-  description: 'Plataforma de streaming de conteúdo educacional e entretenimento.',
+  description:
+    'Plataforma de streaming de conteúdo educacional e entretenimento.',
 }
 
 export default function RootLayout({
@@ -16,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={roboto.className}>{children}</body>
+      <body className={sourceSans3.className}>{children}</body>
     </html>
   )
 }
