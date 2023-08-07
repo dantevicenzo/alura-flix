@@ -1,0 +1,15 @@
+.title {
+    width: fit-content;
+    border-radius: 6px;
+    font-weight: 400;
+}
+
+.sm {
+    font-size: 35px;
+    padding: 0 24px;
+}
+
+.md {
+    font-size: 60px;
+    padding: 0 24px;
+}

@@ -40,6 +40,8 @@ body {
 
 body {
   background-color: var(--color-black-dark);
+  min-height: 100vh;
+  color: var(--color-gray-light);
 }
 
 a {
