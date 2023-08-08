@@ -3,11 +3,14 @@ import { Button } from './button'
 import logo from 'public/logo.png'
 
 import styles from './header.module.css'
+import Link from 'next/link'
 
 export const Header = () => {
   return (
     <header className={styles.header}>
-      <Image src={logo} alt="" height={40} />
+      <Link href="/">
+        <Image src={logo} alt="" height={40} />
+      </Link>
       <Button variantSize="sm" variantColor="dark">
         Novo vídeo
       </Button>
