@@ -1,0 +1,20 @@
+.container {
+  padding: 0 40px;
+}
+
+.slider {
+  overflow: visible !important;
+}
+
+.image-slide {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  aspect-ratio: 16 / 9;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+}
+  

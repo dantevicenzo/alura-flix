@@ -1,7 +1,18 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .title {
     width: fit-content;
     border-radius: 6px;
     font-weight: 400;
+}
+
+.subtitle {
+    font-size: 18px;
+    font-weight: 300;
 }
 
 .sm {
