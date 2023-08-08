@@ -6,7 +6,7 @@
 .content-container {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 94px);
+    height: calc(100vh - 94px + 3px); /* Tela cheia - tamanho do Header + tamanho da borda */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

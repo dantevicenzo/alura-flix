@@ -55,6 +55,7 @@ export const Banner = ({
         className={styles['content-container']}
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.59), rgba(0, 0, 0, 0.59)), url(${playerImg.src})`,
+          borderBottom: `3px solid ${color}`,
         }}
       >
         <div className={styles.content}>
