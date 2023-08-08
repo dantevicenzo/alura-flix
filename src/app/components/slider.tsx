@@ -7,14 +7,14 @@ import 'keen-slider/keen-slider.min.css'
 
 export interface ISlide {
   imageUrl: string
-  borderColor: string
 }
 
 interface ISliderProps {
   slides: ISlide[]
+  borderColor?: string
 }
 
-export const Slider = ({ slides }: ISliderProps) => {
+export const Slider = ({ slides, borderColor }: ISliderProps) => {
   const [ref] = useKeenSlider<HTMLDivElement>({
     slides: {
       perView: 3.1,
@@ -31,7 +31,7 @@ export const Slider = ({ slides }: ISliderProps) => {
             className={`keen-slider__slide ${styles['image-slide']}`}
             style={{
               backgroundImage: `url(${slide.imageUrl})`,
-              border: `3px solid ${slide.borderColor}`,
+              border: `${borderColor ? `3px solid ${borderColor}` : 'none'}`,
             }}
           ></div>
         ))}

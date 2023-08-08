@@ -13,6 +13,7 @@ interface IBannerProps {
   description: string
   image: StaticImageData
   color: string
+  slides: ISlide[]
 }
 
 export const Banner = ({
@@ -21,34 +22,8 @@ export const Banner = ({
   description,
   image,
   color,
+  slides,
 }: IBannerProps) => {
-  const slides: ISlide[] = [
-    {
-      imageUrl: 'https://img.youtube.com/vi/6IuQUgeDPg0/maxresdefault.jpg',
-      borderColor: color,
-    },
-    {
-      imageUrl: 'https://img.youtube.com/vi/kyFiT4ofMwk/maxresdefault.jpg',
-      borderColor: color,
-    },
-    {
-      imageUrl: 'https://img.youtube.com/vi/jK0uiQ1ZQQQ/maxresdefault.jpg',
-      borderColor: color,
-    },
-    {
-      imageUrl: 'https://img.youtube.com/vi/VVmGrEZoBvM/maxresdefault.jpg',
-      borderColor: color,
-    },
-    {
-      imageUrl: 'https://img.youtube.com/vi/scAYB-1ODGk/maxresdefault.jpg',
-      borderColor: color,
-    },
-    {
-      imageUrl: 'https://img.youtube.com/vi/slmtdlWNwcE/maxresdefault.jpg',
-      borderColor: color,
-    },
-  ]
-
   return (
     <div className={styles.container}>
       <div
@@ -72,7 +47,7 @@ export const Banner = ({
         </div>
       </div>
       <div className={styles.slider}>
-        <Slider slides={slides} />
+        <Slider slides={slides} borderColor={color} />
       </div>
     </div>
   )
