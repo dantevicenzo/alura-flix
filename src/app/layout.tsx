@@ -4,6 +4,11 @@ import { Source_Sans_3 as SourceSans3 } from 'next/font/google'
 import { Header } from './components/header'
 import { Footer } from './components/footer'
 
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
+
 const sourceSans3 = SourceSans3({
   subsets: ['latin'],
   weight: ['600', '500', '400', '300'],
