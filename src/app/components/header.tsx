@@ -11,9 +11,11 @@ export const Header = () => {
       <Link href="/">
         <Image src={logo} alt="" height={40} />
       </Link>
-      <Button variantSize="sm" variantColor="dark">
-        Novo vídeo
-      </Button>
+      <Link href="/adicionar-video">
+        <Button variantSize="sm" variantColor="dark">
+          Novo vídeo
+        </Button>
+      </Link>
     </header>
   )
 }
