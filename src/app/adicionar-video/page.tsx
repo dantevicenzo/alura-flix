@@ -2,11 +2,12 @@ import styles from './page.module.css'
 import { InputText } from '../components/inputText'
 import { InputSelect } from '../components/inputSelect'
 import { Button } from '../components/button'
+import Link from 'next/link'
 
 const AdicionarVideo = () => {
   return (
     <main className={styles.main}>
-      <h1>Adicionar Vídeo</h1>
+      <h1>Novo vídeo</h1>
       <InputText id="titulo" label="Título" fullWidth />
       <InputText id="link-video" label="Link do vídeo" fullWidth />
       <InputText id="link-imagem" label="Link da imagem do vídeo" fullWidth />
@@ -41,9 +42,11 @@ const AdicionarVideo = () => {
         <Button variantColor="gray" variantSize="sm">
           Limpar
         </Button>
-        <Button variantColor="blue" variantSize="md">
-          Nova Categoria
-        </Button>
+        <Link href="/adicionar-categoria">
+          <Button variantColor="blue" variantSize="md">
+            Nova Categoria
+          </Button>
+        </Link>
       </div>
     </main>
   )
