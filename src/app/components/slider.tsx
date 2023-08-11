@@ -4,13 +4,10 @@ import styles from './slider.module.css'
 
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
-
-export interface ISlide {
-  imageUrl: string
-}
+import { IVideo } from '../db'
 
 interface ISliderProps {
-  slides: ISlide[]
+  slides: IVideo[]
   borderColor?: string
 }
 

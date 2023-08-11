@@ -5,7 +5,8 @@ import styles from './banner.module.css'
 
 import playerImg from 'public/player.png'
 import { CategoryTitle } from './categoryTitle'
-import { ISlide, Slider } from './slider'
+import { Slider } from './slider'
+import { IVideo } from '../db'
 
 interface IBannerProps {
   category: string
@@ -13,7 +14,7 @@ interface IBannerProps {
   description: string
   image: StaticImageData
   color: string
-  slides: ISlide[]
+  slides: IVideo[]
 }
 
 export const Banner = ({

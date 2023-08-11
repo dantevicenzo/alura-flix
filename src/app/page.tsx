@@ -3,7 +3,7 @@ import { CategorySlider } from './components/categorySlider'
 import styles from './page.module.css'
 import playerImg from 'public/player.png'
 
-import { frontEndSlides, dataScienceSlides, mobileSlides } from './db'
+import { videos } from './db'
 
 export default function Home() {
   return (
@@ -16,19 +16,19 @@ export default function Home() {
             o conhecimento adquirido na Formação React."
         image={playerImg}
         color="#6BD1FF"
-        slides={frontEndSlides}
+        slides={videos.filter((video) => video.category === 'Front End')}
       />
       <CategorySlider
         title="Data Science"
         color="#69953B"
         subtitle="Formação Data Science na Alura"
-        slides={dataScienceSlides}
+        slides={videos.filter((video) => video.category === 'Data Science')}
       />
       <CategorySlider
         title="Mobile"
         color="#FFBA05"
         subtitle="Formação Mobile da Alura"
-        slides={mobileSlides}
+        slides={videos.filter((video) => video.category === 'Mobile')}
       />
     </main>
   )
