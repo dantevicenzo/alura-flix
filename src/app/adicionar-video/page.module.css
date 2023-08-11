@@ -7,14 +7,3 @@
     font-size: 60px;
     margin-bottom: 50px;
 }
-
-.button-container {
-    display: flex;
-    width: 100%;
-    gap: 40px;
-    margin-top: 16px;
-}
-
-.button-container a:last-child {
-    margin-left: auto;
-}
