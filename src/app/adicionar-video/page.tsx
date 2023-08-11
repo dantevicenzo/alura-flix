@@ -84,7 +84,7 @@ const AdicionarVideo = () => {
 
   return (
     <main className={styles.main}>
-      <form action="" onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <h1>Novo vídeo</h1>
         <InputText
           {...register('titulo')}
