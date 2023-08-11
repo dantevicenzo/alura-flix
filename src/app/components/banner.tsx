@@ -1,6 +1,6 @@
 'use client'
 
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import styles from './banner.module.css'
 
 import playerImg from 'public/player.png'
@@ -10,21 +10,13 @@ import { IVideo } from '../db'
 
 interface IBannerProps {
   category: string
-  title: string
-  description: string
-  image: StaticImageData
   color: string
   slides: IVideo[]
 }
 
-export const Banner = ({
-  category,
-  title,
-  description,
-  image,
-  color,
-  slides,
-}: IBannerProps) => {
+export const Banner = ({ category, color, slides }: IBannerProps) => {
+  const firstVideo = slides[0]
+
   return (
     <div className={styles.container}>
       <div
@@ -39,16 +31,22 @@ export const Banner = ({
             <CategoryTitle variantSize="md" backgroundColor={color}>
               {category}
             </CategoryTitle>
-            <h3>{title}</h3>
-            <p>{description}</p>
+            <h3>{firstVideo.title}</h3>
+            <p>{firstVideo.description}</p>
           </div>
           <div>
-            <Image src={image} alt="" style={{ borderColor: `${color}` }} />
+            <Image
+              src={firstVideo.imageUrl}
+              alt=""
+              width={646}
+              height={333}
+              style={{ borderColor: `${color}` }}
+            />
           </div>
         </div>
       </div>
       <div className={styles.slider}>
-        <Slider slides={slides} borderColor={color} />
+        <Slider slides={slides.slice(1)} borderColor={color} />
       </div>
     </div>
   )

@@ -9,58 +9,56 @@ import { Button } from './button'
 import Link from 'next/link'
 
 import styles from './adicionarVideoFrom.module.css'
-
-const CATEGORIAS = [
-  '',
-  'Back End',
-  'Mobile',
-  'Infraestrutura',
-  'Data Science',
-  'Design & UX',
-  'Marketing Digital',
-  'Inovação & Gestão',
-] as const
-
-const adicionarVideoFormValidationSchema = z.object({
-  titulo: z.string().nonempty({
-    message: 'O campo título é obrigatório.',
-  }),
-  linkDoVideo: z
-    .string()
-    .nonempty({
-      message: 'O campo link do vídeo é obrigatório.',
-    })
-    .url({
-      message: 'Insira um link válido.',
-    }),
-  linkDaImagem: z
-    .string()
-    .nonempty({
-      message: 'O campo link da imagem é obrigatório.',
-    })
-    .url({
-      message: 'Insira um link válido.',
-    }),
-  categoria: z
-    .enum(CATEGORIAS, {
-      required_error: 'O campo categoria é obrigatório.',
-    })
-    .refine((value) => value !== '', {
-      message: 'O campo categoria é obrigatório.',
-    }),
-  descricao: z.string().nonempty({
-    message: 'O campo descrição é obrigatório.',
-  }),
-  codigoDeSeguranca: z.string().nonempty({
-    message: 'O campo código de segurança é obrigatório.',
-  }),
-})
-
-type TAdicionarVideoFormData = z.infer<
-  typeof adicionarVideoFormValidationSchema
->
+import { useContext } from 'react'
+import { VideosContext } from '../contexts/VideosContextProvider'
 
 export const AdicionarVideoForm = () => {
+  const { categoriesList } = useContext(VideosContext)
+
+  const CATEGORIAS = [
+    '',
+    ...categoriesList.map((category) => category.name),
+  ] as const
+
+  const adicionarVideoFormValidationSchema = z.object({
+    titulo: z.string().nonempty({
+      message: 'O campo título é obrigatório.',
+    }),
+    linkDoVideo: z
+      .string()
+      .nonempty({
+        message: 'O campo link do vídeo é obrigatório.',
+      })
+      .url({
+        message: 'Insira um link válido.',
+      }),
+    linkDaImagem: z
+      .string()
+      .nonempty({
+        message: 'O campo link da imagem é obrigatório.',
+      })
+      .url({
+        message: 'Insira um link válido.',
+      }),
+    categoria: z
+      .enum(CATEGORIAS, {
+        required_error: 'O campo categoria é obrigatório.',
+      })
+      .refine((value) => value !== '', {
+        message: 'O campo categoria é obrigatório.',
+      }),
+    descricao: z.string().nonempty({
+      message: 'O campo descrição é obrigatório.',
+    }),
+    codigoDeSeguranca: z.string().nonempty({
+      message: 'O campo código de segurança é obrigatório.',
+    }),
+  })
+
+  type TAdicionarVideoFormData = z.infer<
+    typeof adicionarVideoFormValidationSchema
+  >
+
   const {
     register,
     handleSubmit,

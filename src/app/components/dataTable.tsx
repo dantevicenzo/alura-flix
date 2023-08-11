@@ -8,6 +8,8 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
+import { useContext } from 'react'
+import { VideosContext } from '../contexts/VideosContextProvider'
 
 function createData(
   nome: string,
@@ -17,51 +19,6 @@ function createData(
 ) {
   return { nome, descricao, editar, remover }
 }
-
-const rows = [
-  createData(
-    'Back End',
-    'Todos os vídeo que estou usando para estudar Back End',
-    'Editar',
-    'Remover',
-  ),
-  createData(
-    'Mobile',
-    'Conteúdo que venho estudando sobre React Native e Flutter',
-    'Editar',
-    'Remover',
-  ),
-  createData(
-    'Infraestrutura',
-    'Tudo que estou aprendendo sobre Docker e muito mais',
-    'Editar',
-    'Remover',
-  ),
-  createData(
-    'Data Science',
-    'Coisas de R e Python que venho aprendendo',
-    'Editar',
-    'Remover',
-  ),
-  createData(
-    'Design & UX',
-    'Ferramentas e técnicas que estudo sobre UX e Design',
-    'Editar',
-    'Remover',
-  ),
-  createData(
-    'Marketing Digital',
-    'A forma de vender a monetizar minhas ideias',
-    'Editar',
-    'Remover',
-  ),
-  createData(
-    'Inovação & Gestão',
-    'Como manter o time feliz e muito mais',
-    'Editar',
-    'Remover',
-  ),
-]
 
 const StyledTable = styled(Table)(() => ({
   borderCollapse: 'separate', // Evita que as bordas laterais fiquem tracejadas
@@ -115,6 +72,12 @@ const StyledBodyTableRow = styled(TableRow)(() => ({
 }))
 
 export const DataTable = () => {
+  const { categoriesList } = useContext(VideosContext)
+
+  const rows = categoriesList.map((category) =>
+    createData(category.name, category.description, 'Editar', 'Remover'),
+  )
+
   return (
     <TableContainer component={Paper}>
       <StyledTable

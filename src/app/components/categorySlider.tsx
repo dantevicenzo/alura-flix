@@ -1,13 +1,14 @@
 import { CategoryTitle } from './categoryTitle'
-import { ISlide, Slider } from './slider'
+import { Slider } from './slider'
 
 import styles from './categorySlider.module.css'
+import { IVideo } from '../db'
 
 interface ICategorySliderProps {
   title: string
   subtitle?: string
   color: string
-  slides: ISlide[]
+  slides: IVideo[]
 }
 
 export const CategorySlider = ({

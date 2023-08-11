@@ -8,6 +8,7 @@ import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
+import { VideosContextProvider } from './contexts/VideosContextProvider'
 
 const sourceSans3 = SourceSans3({
   subsets: ['latin'],
@@ -29,7 +30,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={sourceSans3.className}>
         <Header />
-        {children}
+        <VideosContextProvider>{children}</VideosContextProvider>
         <Footer />
       </body>
     </html>

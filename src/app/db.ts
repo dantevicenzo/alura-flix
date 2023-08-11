@@ -6,6 +6,11 @@ export interface ICategory {
 
 export const categories: ICategory[] = [
   {
+    name: 'Front End',
+    description: 'Todos os vídeo que estou usando para estudar Front End',
+    rgbColor: 'rgb(107, 209, 255)',
+  },
+  {
     name: 'Back End',
     description: 'Todos os vídeo que estou usando para estudar Back End',
     rgbColor: 'rgb(105, 149, 59)',
@@ -52,6 +57,15 @@ export interface IVideo {
 
 export const videos: IVideo[] = [
   // Front End
+  {
+    title:
+      'O que é TRANSFORMAÇÃO DIGITAL? com Paulo Silveira | #HipstersPontoTube',
+    videoUrl: 'https://www.youtube.com/watch?v=Z-N5Fr9P-GU',
+    imageUrl: 'https://img.youtube.com/vi/Z-N5Fr9P-GU/maxresdefault.jpg',
+    category: 'Front End',
+    description:
+      'Entenda o que é Transformação Digital, quais os caminhos a se evitar e qual deve ser o seu objetivo para começar a fazer uma transformação digital na sua empresa.',
+  },
   {
     title: 'O que é React JS? #HipstersPontoTube',
     videoUrl: 'https://www.youtube.com/watch?v=6IuQUgeDPg0',
