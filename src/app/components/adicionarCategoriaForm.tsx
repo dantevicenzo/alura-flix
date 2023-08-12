@@ -9,6 +9,8 @@ import { InputColor } from './inputColor'
 import { Button } from './button'
 
 import styles from './adicionarCategoriaForm.module.css'
+import { useContext } from 'react'
+import { VideosContext } from '../contexts/VideosContextProvider'
 
 const adicionarCategoriaFormValidationSchema = z.object({
   nome: z.string().nonempty({
@@ -30,6 +32,8 @@ type TAdicionarCategoriaFormData = z.infer<
 >
 
 export const AdicionarCategoriaForm = () => {
+  const { addCategory } = useContext(VideosContext)
+
   const {
     control,
     register,
@@ -47,7 +51,11 @@ export const AdicionarCategoriaForm = () => {
   })
 
   function onSubmit(formData: TAdicionarCategoriaFormData) {
-    console.log(formData)
+    addCategory({
+      description: formData.descricao,
+      name: formData.descricao,
+      rgbColor: formData.cor,
+    })
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>

@@ -13,7 +13,7 @@ import { useContext } from 'react'
 import { VideosContext } from '../contexts/VideosContextProvider'
 
 export const AdicionarVideoForm = () => {
-  const { categoriesList } = useContext(VideosContext)
+  const { categoriesList, addVideo } = useContext(VideosContext)
 
   const CATEGORIAS = [
     '',
@@ -77,7 +77,13 @@ export const AdicionarVideoForm = () => {
   })
 
   function onSubmit(formData: TAdicionarVideoFormData) {
-    console.log(formData)
+    addVideo({
+      category: formData.categoria,
+      description: formData.descricao,
+      imageUrl: formData.linkDaImagem,
+      title: formData.titulo,
+      videoUrl: formData.linkDoVideo,
+    })
   }
 
   return (
