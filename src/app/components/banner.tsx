@@ -7,6 +7,7 @@ import playerImg from 'public/player.png'
 import { CategoryTitle } from './categoryTitle'
 import { Slider } from './slider'
 import { IVideo } from '../db'
+import Link from 'next/link'
 
 interface IBannerProps {
   category: string
@@ -31,10 +32,12 @@ export const Banner = ({ category, color, slides }: IBannerProps) => {
             <CategoryTitle variantSize="md" backgroundColor={color}>
               {category}
             </CategoryTitle>
-            <h3>{firstVideo.title}</h3>
-            <p>{firstVideo.description}</p>
+            <Link href={firstVideo.videoUrl} target="_blank">
+              <h3>{firstVideo.title}</h3>
+              <p>{firstVideo.description}</p>
+            </Link>
           </div>
-          <div>
+          <Link href={firstVideo.videoUrl} target="_blank">
             <Image
               src={firstVideo.imageUrl}
               alt=""
@@ -42,7 +45,7 @@ export const Banner = ({ category, color, slides }: IBannerProps) => {
               height={333}
               style={{ borderColor: `${color}` }}
             />
-          </div>
+          </Link>
         </div>
       </div>
       <div className={styles.slider}>
