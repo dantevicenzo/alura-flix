@@ -15,13 +15,15 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <Banner
-        category={bannerCategory.name}
-        color={bannerCategory.rgbColor}
-        slides={videosList.filter(
-          (video) => video.category === bannerCategory.name,
-        )}
-      />
+      {bannerCategory && (
+        <Banner
+          category={bannerCategory.name}
+          color={bannerCategory.rgbColor}
+          slides={videosList.filter(
+            (video) => video.category === bannerCategory.name,
+          )}
+        />
+      )}
       {sliderCategories.map((category) => {
         return (
           <CategorySlider
