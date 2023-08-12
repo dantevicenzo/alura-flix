@@ -62,6 +62,7 @@ export const AdicionarVideoForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<TAdicionarVideoFormData>({
     defaultValues: {
@@ -84,6 +85,11 @@ export const AdicionarVideoForm = () => {
       title: formData.titulo,
       videoUrl: formData.linkDoVideo,
     })
+    reset()
+  }
+
+  function handleResetForm() {
+    reset()
   }
 
   return (
@@ -159,7 +165,7 @@ export const AdicionarVideoForm = () => {
         <Button variantColor="blue" variantSize="sm" type="submit">
           Salvar
         </Button>
-        <Button variantColor="gray" variantSize="sm">
+        <Button variantColor="gray" variantSize="sm" onClick={handleResetForm}>
           Limpar
         </Button>
         <Link href="/adicionar-categoria">

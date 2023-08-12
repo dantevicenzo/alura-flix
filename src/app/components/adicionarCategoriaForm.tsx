@@ -38,6 +38,7 @@ export const AdicionarCategoriaForm = () => {
     control,
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<TAdicionarCategoriaFormData>({
     defaultValues: {
@@ -56,7 +57,13 @@ export const AdicionarCategoriaForm = () => {
       name: formData.descricao,
       rgbColor: formData.cor,
     })
+    reset()
   }
+
+  function handleResetForm() {
+    reset()
+  }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <h1>Nova categoria</h1>
@@ -110,7 +117,7 @@ export const AdicionarCategoriaForm = () => {
         <Button variantColor="blue" variantSize="sm" type="submit">
           Salvar
         </Button>
-        <Button variantColor="gray" variantSize="sm">
+        <Button variantColor="gray" variantSize="sm" onClick={handleResetForm}>
           Limpar
         </Button>
       </div>
