@@ -11,16 +11,21 @@ import Link from 'next/link'
 import styles from './adicionarVideoFrom.module.css'
 import { useContext } from 'react'
 import { VideosContext } from '../contexts/VideosContextProvider'
+import { IVideo } from '../db'
 
-export const AdicionarVideoForm = () => {
-  const { categoriesList, addVideo } = useContext(VideosContext)
+interface IFormVideoProps {
+  onSubmitAction: (video: IVideo) => void
+}
+
+export const FormVideo = ({ onSubmitAction }: IFormVideoProps) => {
+  const { categoriesList } = useContext(VideosContext)
 
   const CATEGORIAS = [
     '',
     ...categoriesList.map((category) => category.name),
   ] as const
 
-  const adicionarVideoFormValidationSchema = z.object({
+  const formVideoValidationSchema = z.object({
     titulo: z.string().nonempty({
       message: 'O campo título é obrigatório.',
     }),
@@ -55,16 +60,14 @@ export const AdicionarVideoForm = () => {
     }),
   })
 
-  type TAdicionarVideoFormData = z.infer<
-    typeof adicionarVideoFormValidationSchema
-  >
+  type TFormVideoData = z.infer<typeof formVideoValidationSchema>
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<TAdicionarVideoFormData>({
+  } = useForm<TFormVideoData>({
     defaultValues: {
       titulo: '',
       linkDoVideo: '',
@@ -73,12 +76,12 @@ export const AdicionarVideoForm = () => {
       descricao: '',
       codigoDeSeguranca: '',
     },
-    resolver: zodResolver(adicionarVideoFormValidationSchema),
+    resolver: zodResolver(formVideoValidationSchema),
     mode: 'onBlur',
   })
 
-  function onSubmit(formData: TAdicionarVideoFormData) {
-    addVideo({
+  function onSubmit(formData: TFormVideoData) {
+    onSubmitAction({
       category: formData.categoria,
       description: formData.descricao,
       imageUrl: formData.linkDaImagem,

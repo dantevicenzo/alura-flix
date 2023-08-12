@@ -7,12 +7,13 @@ import { matchIsValidColor } from 'mui-color-input'
 import { InputText } from './inputText'
 import { InputColor } from './inputColor'
 import { Button } from './button'
+import { ICategory } from '../db'
+import { v4 as uuidv4 } from 'uuid'
 
 import styles from './adicionarCategoriaForm.module.css'
-import { useContext } from 'react'
-import { VideosContext } from '../contexts/VideosContextProvider'
+import { useEffect } from 'react'
 
-const adicionarCategoriaFormValidationSchema = z.object({
+const formCategoryValidationSchema = z.object({
   nome: z.string().nonempty({
     message: 'O campo nome é obrigatório.',
   }),
@@ -27,34 +28,49 @@ const adicionarCategoriaFormValidationSchema = z.object({
   }),
 })
 
-type TAdicionarCategoriaFormData = z.infer<
-  typeof adicionarCategoriaFormValidationSchema
->
+type TFormCategoryData = z.infer<typeof formCategoryValidationSchema>
 
-export const AdicionarCategoriaForm = () => {
-  const { addCategory } = useContext(VideosContext)
+interface IFormCategoryProps {
+  values?: ICategory
+  onSubmitAction: (category: ICategory) => void
+}
 
+export const FormCategory = ({
+  values,
+  onSubmitAction,
+}: IFormCategoryProps) => {
   const {
     control,
     register,
     handleSubmit,
+    setValue,
     reset,
     formState: { errors },
-  } = useForm<TAdicionarCategoriaFormData>({
+  } = useForm<TFormCategoryData>({
     defaultValues: {
       nome: '',
       descricao: '',
-      cor: 'rgb(255, 255, 255)',
+      cor: 'rgb(0, 0, 0)',
       codigoDeSeguranca: '',
     },
-    resolver: zodResolver(adicionarCategoriaFormValidationSchema),
+    resolver: zodResolver(formCategoryValidationSchema),
     mode: 'onBlur',
   })
 
-  function onSubmit(formData: TAdicionarCategoriaFormData) {
-    addCategory({
+  useEffect(() => {
+    if (values) {
+      setValue('nome', values.name)
+      setValue('descricao', values.description)
+      setValue('cor', values.rgbColor)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  function onSubmit(formData: TFormCategoryData) {
+    onSubmitAction({
+      id: values ? values.id : uuidv4(),
       description: formData.descricao,
-      name: formData.descricao,
+      name: formData.nome,
       rgbColor: formData.cor,
     })
     reset()

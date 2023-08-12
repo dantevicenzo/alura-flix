@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import styles from './banner.module.css'
 
-import playerImg from 'public/player.png'
 import { CategoryTitle } from './categoryTitle'
 import { Slider } from './slider'
 import { IVideo } from '../db'
@@ -23,7 +22,7 @@ export const Banner = ({ category, color, slides }: IBannerProps) => {
       <div
         className={styles['content-container']}
         style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.59), rgba(0, 0, 0, 0.59)), url(${playerImg.src})`,
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.59), rgba(0, 0, 0, 0.59)), url(${firstVideo.imageUrl})`,
           borderBottom: `3px solid ${color}`,
         }}
       >

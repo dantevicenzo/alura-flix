@@ -1,4 +1,5 @@
 export interface ICategory {
+  id: string
   name: string
   description: string
   rgbColor: string
@@ -6,41 +7,49 @@ export interface ICategory {
 
 export const categories: ICategory[] = [
   {
+    id: 'dc88cd2b-fa43-41cb-974e-457edf653e93',
     name: 'Front End',
     description: 'Todos os vídeo que estou usando para estudar Front End',
     rgbColor: 'rgb(107, 209, 255)',
   },
   {
+    id: '92f36d4f-b9c9-4b8e-ba66-ad971ecdd5bc',
     name: 'Back End',
     description: 'Todos os vídeo que estou usando para estudar Back End',
     rgbColor: 'rgb(105, 149, 59)',
   },
   {
+    id: 'f4fac350-6957-4c30-a731-25c8a3310650',
     name: 'Mobile',
     description: 'Conteúdo que venho estudando sobre React Native e Flutter',
     rgbColor: 'rgb(255, 186, 5)',
   },
   {
+    id: '932ba850-cd7b-4324-9b85-4cdebd080acc',
     name: 'Infraestrutura',
     description: 'Tudo que estou aprendendo sobre Docker e muito mais',
     rgbColor: 'rgb(156, 211, 59)',
   },
   {
+    id: '98cab652-f052-47f1-8153-9adb3893849d',
     name: 'Data Science',
     description: 'Coisas de R e Python que venho aprendendo',
     rgbColor: 'rgb(156, 211, 59)',
   },
   {
+    id: 'c1e3f0f4-859c-4fea-8f49-fe6eb82b0844',
     name: 'Design & UX',
     description: 'Ferramentas e técnicas que estudo sobre UX e Design',
     rgbColor: 'rgb(220, 110, 190)',
   },
   {
+    id: '81752adb-6db4-4485-abbd-6588893aa8ea',
     name: 'Marketing Digital',
     description: 'A forma de vender a monetizar minhas ideias',
     rgbColor: 'rgb(107, 91, 226)',
   },
   {
+    id: '14153c2f-e73e-4302-85e2-a1f986a6d647',
     name: 'Inovação & Gestão',
     description: 'Como manter o time feliz e muito mais',
     rgbColor: 'rgb(255, 140, 42)',
