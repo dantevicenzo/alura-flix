@@ -5,6 +5,7 @@ import styles from './slider.module.css'
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 import { IVideo } from '../db'
+import Link from 'next/link'
 
 interface ISliderProps {
   slides: IVideo[]
@@ -23,14 +24,16 @@ export const Slider = ({ slides, borderColor }: ISliderProps) => {
     <div className={styles.container}>
       <div ref={ref} className={`keen-slider ${styles.slider}`}>
         {slides.map((slide) => (
-          <div
+          <Link
+            href={slide.videoUrl}
+            target="_blank"
             key={slide.imageUrl}
             className={`keen-slider__slide ${styles['image-slide']}`}
             style={{
               backgroundImage: `url(${slide.imageUrl})`,
               border: `${borderColor ? `3px solid ${borderColor}` : 'none'}`,
             }}
-          ></div>
+          ></Link>
         ))}
       </div>
     </div>
