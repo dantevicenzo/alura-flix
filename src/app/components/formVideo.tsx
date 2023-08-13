@@ -39,12 +39,11 @@ export const FormVideo = ({ onSubmitAction }: IFormVideoProps) => {
       }),
     linkDaImagem: z
       .string()
-      .nonempty({
-        message: 'O campo link da imagem é obrigatório.',
-      })
       .url({
         message: 'Insira um link válido.',
-      }),
+      })
+      .optional()
+      .or(z.literal('')),
     categoria: z
       .enum(CATEGORIAS, {
         required_error: 'O campo categoria é obrigatório.',
@@ -82,11 +81,13 @@ export const FormVideo = ({ onSubmitAction }: IFormVideoProps) => {
 
   function onSubmit(formData: TFormVideoData) {
     onSubmitAction({
-      category: formData.categoria,
-      description: formData.descricao,
-      imageUrl: formData.linkDaImagem,
       title: formData.titulo,
       videoUrl: formData.linkDoVideo,
+      imageUrl: formData.linkDaImagem
+        ? formData.linkDaImagem
+        : getYouTubeThumbnailUrlFromVideoUrl(formData.linkDoVideo),
+      category: formData.categoria,
+      description: formData.descricao,
     })
     reset()
   }
@@ -118,7 +119,6 @@ export const FormVideo = ({ onSubmitAction }: IFormVideoProps) => {
       />
       <InputText
         {...register('linkDaImagem')}
-        required
         id="link-imagem"
         label="Link da imagem do vídeo"
         fullWidth
@@ -179,4 +179,24 @@ export const FormVideo = ({ onSubmitAction }: IFormVideoProps) => {
       </div>
     </form>
   )
+}
+
+function getYouTubeVideoIdFromUrl(link: string) {
+  const regex =
+    /(?:\/watch\?v=|\/v\/|\/vi\/|youtu\.be\/|\/embed\/|\/e\/)([\w-]{11})/
+  const match = link.match(regex)
+  if (match) {
+    const id = match[1]
+    return id
+  }
+  return null
+}
+
+function getYouTubeThumbnailUrlFromVideoUrl(link: string) {
+  const id = getYouTubeVideoIdFromUrl(link)
+  if (id) {
+    return `https://img.youtube.com/vi/${id}/maxresdefault.jpg`
+  } else {
+    return 'http://bit.ly/placeholder-img-yt'
+  }
 }
