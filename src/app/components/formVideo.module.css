@@ -8,3 +8,9 @@
 .button-container a:last-child {
     margin-left: auto;
 }
+
+@media screen and (max-width: 425px) {
+    .button-container {
+        gap: 18px;
+    }
+}

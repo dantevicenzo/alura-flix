@@ -4,3 +4,9 @@
     margin-top: 16px;
     margin-bottom: 30px;
 }
+
+@media screen and (max-width: 425px) {
+    .button-container {
+        gap: 18px;
+    }
+}

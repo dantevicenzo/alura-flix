@@ -24,6 +24,11 @@
     color: var(--color-black-dark);
 }
 
+.gray-light {
+    background-color: var(--color-gray-light);
+    color: var(--color-black-dark);
+}
+
 /* Variant Sizes */
 .sm {
     width: 180px;
@@ -31,4 +36,22 @@
 
 .md {
     width: 208px;
+}
+
+@media screen and (max-width: 425px) {
+    .button {
+        border: none;
+        border-radius: 4px;
+        height: 36px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .sm {
+        width: 120px;
+    }
+    
+    .md {
+        width: 150px;
+    }
 }

@@ -51,7 +51,7 @@ export const Banner = ({ category, color, slides }: IBannerProps) => {
           >
             <h3>{firstVideo.title}</h3>
           </div>
-          <Button variantSize="sm" variantColor="gray">
+          <Button variantSize="sm" variantColor="gray-light">
             Assistir
           </Button>
         </div>
