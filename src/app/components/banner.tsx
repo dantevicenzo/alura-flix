@@ -5,17 +5,65 @@ import styles from './banner.module.css'
 
 import { CategoryTitle } from './categoryTitle'
 import { Slider } from './slider'
-import { IVideo } from '../db'
+import { ICategory, IVideo } from '../db'
 import Link from 'next/link'
+import { CategorySlider } from './categorySlider'
+import { useEffect, useState } from 'react'
+import { Button } from './button'
 
 interface IBannerProps {
-  category: string
+  category: ICategory
   color: string
   slides: IVideo[]
 }
 
 export const Banner = ({ category, color, slides }: IBannerProps) => {
   const firstVideo = slides[0]
+
+  const [windowSize, setWindowSize] = useState([0, 0])
+  const isMobile = windowSize[0] <= 425
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setWindowSize([window.innerWidth, window.innerHeight])
+
+      const handleWindowResize = () => {
+        setWindowSize([window.innerWidth, window.innerHeight])
+      }
+
+      window.addEventListener('resize', handleWindowResize)
+
+      return () => {
+        window.removeEventListener('resize', handleWindowResize)
+      }
+    }
+  }, [])
+
+  if (isMobile) {
+    return (
+      <div className={styles.container}>
+        <div className={styles['content-button-wrapper']}>
+          <div
+            className={styles['content-container']}
+            style={{
+              backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.59), rgba(0, 0, 0, 0.59)), url(${firstVideo.imageUrl})`,
+            }}
+          >
+            <h3>{firstVideo.title}</h3>
+          </div>
+          <Button variantSize="sm" variantColor="gray">
+            Assistir
+          </Button>
+        </div>
+        <CategorySlider
+          title={category.name}
+          color={category.rgbColor}
+          subtitle={category.description}
+          slides={slides.slice(1)}
+        />
+      </div>
+    )
+  }
 
   return (
     <div className={styles.container}>
@@ -29,7 +77,7 @@ export const Banner = ({ category, color, slides }: IBannerProps) => {
         <div className={styles.content}>
           <div className={styles.info}>
             <CategoryTitle variantSize="md" backgroundColor={color}>
-              {category}
+              {category.name}
             </CategoryTitle>
             <Link href={firstVideo.videoUrl} target="_blank">
               <h3>{firstVideo.title}</h3>

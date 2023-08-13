@@ -17,7 +17,7 @@ export default function Home() {
     <main className={styles.main}>
       {bannerCategory && (
         <Banner
-          category={bannerCategory.name}
+          category={bannerCategory}
           color={bannerCategory.rgbColor}
           slides={videosList.filter(
             (video) => video.category === bannerCategory.name,
