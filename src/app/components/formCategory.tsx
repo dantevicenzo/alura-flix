@@ -23,9 +23,6 @@ const formCategoryValidationSchema = z.object({
   cor: z.string().nonempty({
     message: 'O campo cor é obrigatório.',
   }),
-  codigoDeSeguranca: z.string().nonempty({
-    message: 'O campo código de segurança é obrigatório.',
-  }),
 })
 
 type TFormCategoryData = z.infer<typeof formCategoryValidationSchema>
@@ -51,7 +48,6 @@ export const FormCategory = ({
       nome: '',
       descricao: '',
       cor: 'rgb(0, 0, 0)',
-      codigoDeSeguranca: '',
     },
     resolver: zodResolver(formCategoryValidationSchema),
     mode: 'onBlur',
@@ -116,18 +112,6 @@ export const FormCategory = ({
             helperText={errors.cor ? errors.cor.message : undefined}
           />
         )}
-      />
-      <InputText
-        {...register('codigoDeSeguranca')}
-        id="codigo-de-seguranca"
-        label="Código de segurança"
-        fullWidth
-        error={!!errors.codigoDeSeguranca}
-        helperText={
-          errors.codigoDeSeguranca
-            ? errors.codigoDeSeguranca.message
-            : undefined
-        }
       />
       <div className={styles['button-container']}>
         <Button variantColor="blue" variantSize="sm" type="submit">

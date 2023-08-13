@@ -54,9 +54,6 @@ export const FormVideo = ({ onSubmitAction }: IFormVideoProps) => {
     descricao: z.string().nonempty({
       message: 'O campo descrição é obrigatório.',
     }),
-    codigoDeSeguranca: z.string().nonempty({
-      message: 'O campo código de segurança é obrigatório.',
-    }),
   })
 
   type TFormVideoData = z.infer<typeof formVideoValidationSchema>
@@ -73,7 +70,6 @@ export const FormVideo = ({ onSubmitAction }: IFormVideoProps) => {
       linkDaImagem: '',
       categoria: '',
       descricao: '',
-      codigoDeSeguranca: '',
     },
     resolver: zodResolver(formVideoValidationSchema),
     mode: 'onBlur',
@@ -150,19 +146,6 @@ export const FormVideo = ({ onSubmitAction }: IFormVideoProps) => {
         fullWidth
         error={!!errors.descricao}
         helperText={errors.descricao ? errors.descricao.message : undefined}
-      />
-      <InputText
-        {...register('codigoDeSeguranca')}
-        required
-        id="codigo-de-seguranca"
-        label="Código de segurança"
-        fullWidth
-        error={!!errors.codigoDeSeguranca}
-        helperText={
-          errors.codigoDeSeguranca
-            ? errors.codigoDeSeguranca.message
-            : undefined
-        }
       />
       <div className={styles['button-container']}>
         <Button variantColor="blue" variantSize="sm" type="submit">
