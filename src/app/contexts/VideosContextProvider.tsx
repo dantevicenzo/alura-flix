@@ -1,7 +1,11 @@
 'use client'
 
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useEffect, useState } from 'react'
 import { ICategory, IVideo, categories, videos } from '../db'
+import {
+  getLocalStorageWithExpiryDate,
+  setLocalStorageWithExpiryDate,
+} from '@/lib/utils'
 
 interface IVideosContext {
   videosList: IVideo[]
@@ -22,12 +26,50 @@ interface IVideosContextProviderProps {
 export function VideosContextProvider({
   children,
 }: IVideosContextProviderProps) {
-  const [videosList, setVideosList] = useState(videos)
-  const [categoriesList, setCategoriesList] = useState(categories)
+  const [videosList, setVideosList] = useState<IVideo[]>([])
+  const [categoriesList, setCategoriesList] = useState<ICategory[]>([])
 
   const [nonEmptyCategoriesList, setNonEmptyCategoriesList] = useState(
     getNonEmptyCategoriesList(videosList, categoriesList),
   )
+
+  useEffect(() => {
+    const storedVideos = getLocalStorageWithExpiryDate(
+      '@alura-flix:videos-list-1.0.0',
+    ) as IVideo[] | null
+
+    const storedCategories = getLocalStorageWithExpiryDate(
+      '@alura-flix:categories-list-1.0.0',
+    ) as ICategory[] | null
+
+    const videosListToLoad = storedVideos || videos
+    const categoriesListToLoad = storedCategories || categories
+
+    const nonEmptyCategoriesListToLoad = getNonEmptyCategoriesList(
+      videosListToLoad,
+      categoriesListToLoad,
+    )
+
+    setVideosList(videosListToLoad)
+    setCategoriesList(categoriesListToLoad)
+    setNonEmptyCategoriesList(nonEmptyCategoriesListToLoad)
+  }, [])
+
+  useEffect(() => {
+    setLocalStorageWithExpiryDate(
+      '@alura-flix:videos-list-1.0.0',
+      videosList,
+      30 * 60 * 1000, // 30 minutos em milissegundos
+    )
+  }, [videosList])
+
+  useEffect(() => {
+    setLocalStorageWithExpiryDate(
+      '@alura-flix:categories-list-1.0.0',
+      categoriesList,
+      30 * 60 * 1000, // 30 minutos em milissegundos
+    )
+  }, [categoriesList])
 
   function getNonEmptyCategoriesList(
     videosList: IVideo[],
@@ -42,7 +84,13 @@ export function VideosContextProvider({
   }
 
   function addVideo(video: IVideo) {
-    setVideosList((prev) => [...prev, video])
+    const newVideosList = [...videosList, video]
+    const newNonEmptyCategoriesList = getNonEmptyCategoriesList(
+      newVideosList,
+      categoriesList,
+    )
+    setVideosList(newVideosList)
+    setNonEmptyCategoriesList(newNonEmptyCategoriesList)
   }
 
   function addCategory(category: ICategory) {
