@@ -9,11 +9,6 @@ import { useEffect, useState } from 'react'
 
 export const Footer = () => {
   const [windowSize, setWindowSize] = useState([0, 0])
-
-  if (typeof window !== 'undefined') {
-    setWindowSize([window.innerWidth, window.innerHeight])
-  }
-
   const pathname = usePathname()
   const isHomePage = pathname === '/'
   const isMobile = windowSize[0] <= 425
@@ -21,6 +16,8 @@ export const Footer = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      setWindowSize([window.innerWidth, window.innerHeight])
+
       const handleWindowResize = () => {
         setWindowSize([window.innerWidth, window.innerHeight])
       }
