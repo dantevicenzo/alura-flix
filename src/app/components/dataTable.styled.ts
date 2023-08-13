@@ -6,6 +6,9 @@ import { styled } from '@mui/material/styles'
 export const StyledTable = styled(Table)(() => ({
   borderCollapse: 'separate', // Evita que as bordas laterais fiquem tracejadas
   border: '3px solid var(--color-primary)',
+  '@media (max-width: 960px)': {
+    display: 'none',
+  },
 }))
 
 export const StyledHeadTableCell = styled(TableCell)(() => ({

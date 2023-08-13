@@ -36,15 +36,17 @@ export const Banner = ({ category, color, slides }: IBannerProps) => {
               <p>{firstVideo.description}</p>
             </Link>
           </div>
-          <Link href={firstVideo.videoUrl} target="_blank">
-            <Image
-              src={firstVideo.imageUrl}
-              alt=""
-              width={646}
-              height={333}
-              style={{ borderColor: `${color}` }}
-            />
-          </Link>
+          <div className={styles['content-image']}>
+            <Link href={firstVideo.videoUrl} target="_blank">
+              <Image
+                src={firstVideo.imageUrl}
+                alt=""
+                layout="fill"
+                objectFit="contain"
+                style={{ borderColor: `${color}` }}
+              />
+            </Link>
+          </div>
         </div>
       </div>
       <div className={styles.slider}>
