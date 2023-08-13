@@ -18,6 +18,14 @@ export const Slider = ({ slides, borderColor }: ISliderProps) => {
       perView: 3.1,
       spacing: 22,
     },
+    breakpoints: {
+      '(max-width: 768px)': {
+        slides: {
+          perView: 1.1,
+          spacing: 22,
+        },
+      },
+    },
   })
 
   return (
