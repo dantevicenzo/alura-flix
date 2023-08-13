@@ -51,9 +51,11 @@ export const Banner = ({ category, color, slides }: IBannerProps) => {
           >
             <h3>{firstVideo.title}</h3>
           </div>
-          <Button variantSize="sm" variantColor="gray-light">
-            Assistir
-          </Button>
+          <Link href={firstVideo.videoUrl} target="_blank">
+            <Button variantSize="sm" variantColor="gray-light">
+              Assistir
+            </Button>
+          </Link>
         </div>
         <CategorySlider
           title={category.name}
