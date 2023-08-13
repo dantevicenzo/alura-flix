@@ -22,7 +22,7 @@ export const Slider = ({ slides, borderColor }: ISliderProps) => {
       '(max-width: 768px)': {
         slides: {
           perView: 1.1,
-          spacing: 22,
+          spacing: 8,
         },
       },
     },
