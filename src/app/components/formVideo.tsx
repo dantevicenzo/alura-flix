@@ -8,7 +8,7 @@ import { InputSelect } from './inputSelect'
 import { Button } from './button'
 import Link from 'next/link'
 
-import styles from './adicionarVideoFrom.module.css'
+import styles from './formVideo.module.css'
 import { useContext } from 'react'
 import { VideosContext } from '../contexts/VideosContextProvider'
 import { IVideo } from '../db'

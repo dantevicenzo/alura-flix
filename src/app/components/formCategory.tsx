@@ -10,7 +10,7 @@ import { Button } from './button'
 import { ICategory } from '../db'
 import { v4 as uuidv4 } from 'uuid'
 
-import styles from './adicionarCategoriaForm.module.css'
+import styles from './formCategory.module.css'
 import { useEffect } from 'react'
 
 const formCategoryValidationSchema = z.object({
