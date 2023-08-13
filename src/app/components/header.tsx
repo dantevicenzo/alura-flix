@@ -17,11 +17,13 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <Link href="/">
-        <Image src={logo} alt="" height={40} />
-      </Link>
+      <div className={styles.logo}>
+        <Link href="/">
+          <Image src={logo} alt="" layout="fill" objectFit="contain" />
+        </Link>
+      </div>
       {showNewVideoButton && (
-        <Link href="/adicionar-video">
+        <Link href="/adicionar-video" className={styles.btn}>
           <Button variantSize="sm" variantColor="dark">
             Novo vídeo
           </Button>

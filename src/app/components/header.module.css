@@ -7,3 +7,26 @@
     height: 94px;
     border-bottom: 1px solid var(--color-primary);
 }
+
+.logo {
+    position: relative;
+    height: 40px;
+    width: 168px;
+}
+
+@media screen and (max-width: 425px) {
+    .header {
+        height: 40px;
+        justify-content: center;
+    }
+
+    .logo {
+        position: relative;
+        height: 25px;
+        width: 105px;
+    }
+
+    .btn {
+        display: none;
+    }   
+}
