@@ -12,7 +12,15 @@
     background-size: cover;
 }
 
+.info {
+    width: 60vw;
+}
 
+.content-image {
+    position: relative;
+    width: 40vw;
+    aspect-ratio: 16/9 !important;
+}
 
 .content {
     display: flex;
@@ -39,11 +47,7 @@
     float: right;
 }
 
-.content-image {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16/9 !important;
-}
+
 
 .slider {
     margin-top: -11vw;
@@ -52,5 +56,8 @@
 @media screen and (max-width: 768px) {
     .content-image {
         display: none;
+    }
+    .info {
+        width: auto;
     }
 }
