@@ -13,6 +13,16 @@
     height: 60px;
 }
 
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary);
+    height: 54px;
+    font-size: 21px;
+    font-weight: 600;
+}
+
 @media screen and (max-width:425px) {
     .logo {
         position: relative;
