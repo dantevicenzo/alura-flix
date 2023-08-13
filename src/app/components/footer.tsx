@@ -20,14 +20,16 @@ export const Footer = () => {
   const showMobileAddNewVideo = isHomePage && isMobile
 
   useEffect(() => {
-    const handleWindowResize = () => {
-      setWindowSize([window.innerWidth, window.innerHeight])
-    }
+    if (typeof window !== 'undefined') {
+      const handleWindowResize = () => {
+        setWindowSize([window.innerWidth, window.innerHeight])
+      }
 
-    window.addEventListener('resize', handleWindowResize)
+      window.addEventListener('resize', handleWindowResize)
 
-    return () => {
-      window.removeEventListener('resize', handleWindowResize)
+      return () => {
+        window.removeEventListener('resize', handleWindowResize)
+      }
     }
   }, [])
 
