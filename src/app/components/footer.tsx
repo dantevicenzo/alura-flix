@@ -6,9 +6,11 @@ import Link from 'next/link'
 export const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <Link href="/">
-        <Image src={logo} height={60} alt="" />
-      </Link>
+      <div className={styles.logo}>
+        <Link href="/">
+          <Image src={logo} layout="fill" objectFit="contain" alt="" />
+        </Link>
+      </div>
     </footer>
   )
 }
