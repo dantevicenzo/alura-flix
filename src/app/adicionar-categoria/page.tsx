@@ -4,7 +4,7 @@ import styles from './page.module.css'
 import { DataTable } from '../components/dataTable'
 import { FormCategory } from '../components/formCategory'
 import { useContext } from 'react'
-import { VideosContext } from '../contexts/VideosContextProvider'
+import { VideosContext } from '../../contexts/VideosContextProvider'
 import { ICategory } from '../db'
 
 const AdicionarCategoria = () => {

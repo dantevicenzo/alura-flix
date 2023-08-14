@@ -1,7 +1,7 @@
 'use client'
 
 import { ReactNode, createContext, useEffect, useState } from 'react'
-import { ICategory, IVideo, categories, videos } from '../db'
+import { ICategory, IVideo, categories, videos } from '../app/db'
 import {
   getLocalStorageWithExpiryDate,
   setLocalStorageWithExpiryDate,
@@ -15,6 +15,8 @@ interface IVideosContext {
   addCategory: (category: ICategory) => void
   editCategory: (category: ICategory) => void
   removeCategory: (category: ICategory) => void
+  toggleCategoryisBanner: (category: ICategory) => void
+  getQtdVideosByCategory: (category: ICategory) => number
 }
 
 export const VideosContext = createContext({} as IVideosContext)
@@ -83,24 +85,30 @@ export function VideosContextProvider({
     )
   }
 
+  function updateNonEmptyCategoriesList(
+    videosList: IVideo[],
+    categoriesList: ICategory[],
+  ) {
+    const nonEmptyCategoriesSet = Array.from(
+      new Set(videosList.map((video) => video.category)),
+    )
+    setNonEmptyCategoriesList(
+      categoriesList.filter((category) =>
+        nonEmptyCategoriesSet.includes(category.name),
+      ),
+    )
+  }
+
   function addVideo(video: IVideo) {
     const newVideosList = [...videosList, video]
-    const newNonEmptyCategoriesList = getNonEmptyCategoriesList(
-      newVideosList,
-      categoriesList,
-    )
     setVideosList(newVideosList)
-    setNonEmptyCategoriesList(newNonEmptyCategoriesList)
+    updateNonEmptyCategoriesList(newVideosList, categoriesList)
   }
 
   function addCategory(category: ICategory) {
     const newCategoriesList = [...categoriesList, category]
-    const newNonEmptyCategoriesList = getNonEmptyCategoriesList(
-      videosList,
-      newCategoriesList,
-    )
     setCategoriesList(newCategoriesList)
-    setNonEmptyCategoriesList(newNonEmptyCategoriesList)
+    updateNonEmptyCategoriesList(videosList, newCategoriesList)
   }
 
   function editCategory(category: ICategory) {
@@ -116,14 +124,9 @@ export function VideosContextProvider({
         : video,
     )
 
-    const newNonEmptyCategoriesList = getNonEmptyCategoriesList(
-      newVideosList,
-      newCategoriesList,
-    )
-
     setCategoriesList(newCategoriesList)
     setVideosList(newVideosList)
-    setNonEmptyCategoriesList(newNonEmptyCategoriesList)
+    updateNonEmptyCategoriesList(newVideosList, newCategoriesList)
   }
 
   function removeCategory(category: ICategory) {
@@ -131,11 +134,21 @@ export function VideosContextProvider({
       (cat) => cat.id !== category.id,
     )
     setCategoriesList(newCategoryList)
-    const newNonEmptyCategoriesList = getNonEmptyCategoriesList(
-      videosList,
-      newCategoryList,
+    updateNonEmptyCategoriesList(videosList, newCategoryList)
+  }
+
+  function toggleCategoryisBanner(category: ICategory) {
+    const newCategoryList = categoriesList.map((cat) =>
+      cat.id === category.id
+        ? { ...cat, isBanner: true }
+        : { ...cat, isBanner: false },
     )
-    setNonEmptyCategoriesList(newNonEmptyCategoriesList)
+    setCategoriesList(newCategoryList)
+    updateNonEmptyCategoriesList(videosList, newCategoryList)
+  }
+
+  function getQtdVideosByCategory(category: ICategory) {
+    return videosList.filter((video) => video.category === category.name).length
   }
 
   return (
@@ -148,6 +161,8 @@ export function VideosContextProvider({
         addCategory,
         editCategory,
         removeCategory,
+        toggleCategoryisBanner,
+        getQtdVideosByCategory,
       }}
     >
       {children}

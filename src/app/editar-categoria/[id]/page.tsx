@@ -5,7 +5,7 @@ import { DataTable } from '../../components/dataTable'
 import { FormCategory } from '../../components/formCategory'
 import { ICategory } from '../../db'
 import { useContext } from 'react'
-import { VideosContext } from '../../contexts/VideosContextProvider'
+import { VideosContext } from '../../../contexts/VideosContextProvider'
 
 interface IEditarCategoriaProps {
   params: {

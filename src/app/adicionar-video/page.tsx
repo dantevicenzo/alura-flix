@@ -5,7 +5,7 @@ import styles from './page.module.css'
 import { FormVideo } from '../components/formVideo'
 import { IVideo } from '../db'
 import { useContext } from 'react'
-import { VideosContext } from '../contexts/VideosContextProvider'
+import { VideosContext } from '../../contexts/VideosContextProvider'
 
 const AdicionarVideo = () => {
   const { addVideo } = useContext(VideosContext)
