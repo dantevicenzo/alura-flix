@@ -68,6 +68,7 @@ export const FormCategory = ({
       description: formData.descricao,
       name: formData.nome,
       rgbColor: formData.cor,
+      isBanner: values ? values.isBanner : false,
     })
     reset()
   }
