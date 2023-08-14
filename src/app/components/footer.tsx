@@ -41,7 +41,7 @@ export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.logo}>
-        <Link href="/">
+        <Link href="/" title="Desenvolvido por Dante Vicenzo">
           <Image src={logo} layout="fill" objectFit="contain" alt="" />
         </Link>
       </div>
