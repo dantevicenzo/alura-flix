@@ -15,12 +15,12 @@ export const StyledHeadTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: 'var(--color-black-dark)',
     color: 'var(--color-gray-light)',
-    fontSize: 35,
+    fontSize: 27,
   },
   [`&.${tableCellClasses.body}`]: {
     backgroundColor: 'var(--color-black-dark)',
     color: 'var(--color-gray-light)',
-    fontSize: 27,
+    fontSize: 18,
   },
   '&:not(:last-child)': {
     borderRight: '3px solid var(--color-primary)',

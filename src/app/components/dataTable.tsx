@@ -6,9 +6,9 @@ import TableHead from '@mui/material/TableHead'
 import Paper from '@mui/material/Paper'
 
 import { useContext } from 'react'
-import { VideosContext } from '../contexts/VideosContextProvider'
+import { VideosContext } from '../../contexts/VideosContextProvider'
 import Link from 'next/link'
-import { PencilLine, Trash } from '@phosphor-icons/react'
+import { PencilLine, Star, Trash } from '@phosphor-icons/react'
 import {
   StyledBodyTableCell,
   StyledBodyTableRow,
@@ -16,9 +16,15 @@ import {
   StyledHeadTableRow,
   StyledTable,
 } from './dataTable.styled'
+import { Button } from './button'
 
 export const DataTable = () => {
-  const { categoriesList, removeCategory } = useContext(VideosContext)
+  const {
+    categoriesList,
+    removeCategory,
+    toggleCategoryisBanner,
+    getQtdVideosByCategory,
+  } = useContext(VideosContext)
 
   return (
     <TableContainer component={Paper}>
@@ -31,8 +37,10 @@ export const DataTable = () => {
           <StyledHeadTableRow>
             <StyledHeadTableCell align="left">Nome</StyledHeadTableCell>
             <StyledHeadTableCell align="left">Descrição</StyledHeadTableCell>
+            <StyledHeadTableCell align="center">Vídeos</StyledHeadTableCell>
             <StyledHeadTableCell align="center">Editar</StyledHeadTableCell>
             <StyledHeadTableCell align="center">Remover</StyledHeadTableCell>
+            <StyledHeadTableCell align="center">Banner</StyledHeadTableCell>
           </StyledHeadTableRow>
         </TableHead>
         <TableBody>
@@ -45,6 +53,9 @@ export const DataTable = () => {
                 {row.description}
               </StyledBodyTableCell>
               <StyledBodyTableCell align="center">
+                {getQtdVideosByCategory(row)}
+              </StyledBodyTableCell>
+              <StyledBodyTableCell align="center">
                 <Link href={`/editar-categoria/${row.id}`}>
                   <PencilLine size={24} weight="bold" />
                 </Link>
@@ -55,6 +66,21 @@ export const DataTable = () => {
                   weight="bold"
                   onClick={() => removeCategory(row)}
                 />
+              </StyledBodyTableCell>
+              <StyledBodyTableCell align="center">
+                <Button
+                  variantColor="transparent"
+                  variantSize="icon"
+                  onClick={() => toggleCategoryisBanner(row)}
+                  disabled={getQtdVideosByCategory(row) === 0}
+                  title={
+                    getQtdVideosByCategory(row) === 0
+                      ? 'A categoria precisa ter pelo menos 1 vídeo cadastrado para ser definida como banner.'
+                      : undefined
+                  }
+                >
+                  <Star size={24} weight={row.isBanner ? 'fill' : 'bold'} />
+                </Button>
               </StyledBodyTableCell>
             </StyledBodyTableRow>
           ))}

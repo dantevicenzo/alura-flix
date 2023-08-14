@@ -5,13 +5,17 @@ import { CategorySlider } from './components/categorySlider'
 import styles from './page.module.css'
 
 import { useContext } from 'react'
-import { VideosContext } from './contexts/VideosContextProvider'
+import { VideosContext } from '../contexts/VideosContextProvider'
 
 export default function Home() {
   const { videosList, nonEmptyCategoriesList } = useContext(VideosContext)
 
-  const bannerCategory = nonEmptyCategoriesList[0]
-  const sliderCategories = nonEmptyCategoriesList.slice(1)
+  const bannerCategory = nonEmptyCategoriesList.find(
+    (category) => category.isBanner,
+  )
+  const sliderCategories = nonEmptyCategoriesList.filter(
+    (category) => !category.isBanner,
+  )
 
   return (
     <main className={styles.main}>

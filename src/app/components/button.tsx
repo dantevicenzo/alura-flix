@@ -4,8 +4,8 @@ import styles from './button.module.css'
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
-  variantColor: 'blue' | 'dark' | 'gray' | 'gray-light'
-  variantSize: 'sm' | 'md'
+  variantColor: 'blue' | 'dark' | 'gray' | 'gray-light' | 'transparent'
+  variantSize: 'sm' | 'md' | 'icon'
 }
 
 export const Button = ({

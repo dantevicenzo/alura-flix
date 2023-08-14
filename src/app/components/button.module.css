@@ -31,6 +31,11 @@
     color: var(--color-black-dark);
 }
 
+.transparent {
+    background-color: transparent;
+    color: var(--color-white);
+}
+
 /* Variant Sizes */
 .sm {
     width: 180px;
@@ -40,12 +45,21 @@
     width: 208px;
 }
 
+.icon {
+    width: auto;
+}
+
 .button:hover {
     filter: brightness(1.2);
 }
 
 .dark:hover {
     filter: brightness(0.8);
+}
+
+.button:disabled, .button:disabled svg {
+    opacity: 0.3;
+    cursor: not-allowed;
 }
 
 @media screen and (max-width: 425px) {
