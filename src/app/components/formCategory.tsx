@@ -47,7 +47,7 @@ export const FormCategory = ({
     defaultValues: {
       nome: '',
       descricao: '',
-      cor: 'rgb(0, 0, 0)',
+      cor: 'rgb(0,0,0)',
     },
     resolver: zodResolver(formCategoryValidationSchema),
     mode: 'onBlur',
@@ -70,7 +70,7 @@ export const FormCategory = ({
       rgbColor: formData.cor,
       isBanner: values ? values.isBanner : false,
     })
-    reset()
+    handleResetForm()
   }
 
   function handleResetForm() {
@@ -118,7 +118,12 @@ export const FormCategory = ({
         <Button variantColor="blue" variantSize="sm" type="submit">
           Salvar
         </Button>
-        <Button variantColor="gray" variantSize="sm" onClick={handleResetForm}>
+        <Button
+          variantColor="gray"
+          variantSize="sm"
+          type="button"
+          onClick={handleResetForm}
+        >
           Limpar
         </Button>
       </div>

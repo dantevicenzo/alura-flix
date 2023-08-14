@@ -85,7 +85,7 @@ export const FormVideo = ({ onSubmitAction }: IFormVideoProps) => {
       category: formData.categoria,
       description: formData.descricao,
     })
-    reset()
+    handleResetForm()
   }
 
   function handleResetForm() {
@@ -151,11 +151,16 @@ export const FormVideo = ({ onSubmitAction }: IFormVideoProps) => {
         <Button variantColor="blue" variantSize="sm" type="submit">
           Salvar
         </Button>
-        <Button variantColor="gray" variantSize="sm" onClick={handleResetForm}>
+        <Button
+          variantColor="gray"
+          variantSize="sm"
+          type="button"
+          onClick={handleResetForm}
+        >
           Limpar
         </Button>
         <Link href="/adicionar-categoria">
-          <Button variantColor="blue" variantSize="md">
+          <Button variantColor="blue" variantSize="md" type="button">
             Nova Categoria
           </Button>
         </Link>
